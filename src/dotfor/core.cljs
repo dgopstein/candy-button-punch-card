@@ -6,19 +6,13 @@
             ))
 
 (defn setup []
-  ; Set frame rate to 30 frames per second.
-  (q/frame-rate 30)
-  ; Set color mode to HSB (HSV) instead of default RGB.
-  (q/color-mode :hsb)
-  ; setup function returns initial state. It contains
-  ; circle color and position.
-  {:color 0
-   :angle 0})
+  (q/frame-rate 1)
 
-(defn update-state [state]
-  ; Update sketch state by changing circle color and position.
-  {:color (mod (+ (:color state) 0.7) 255)
-   :angle (+ (:angle state) 0.1)})
+  (q/color-mode :hsb)
+  ; setup function returns initial state. Empty hash
+  {})
+
+(defn update-state [state] state)
 
 (defn draw-state [state]
   ; Clear the sketch by filling it with light-grey color.
@@ -29,6 +23,7 @@
   (q/text (clojure.string/join (take 32 model/bcd-chars)) 5 100)
   (q/text (clojure.string/join (drop 32 model/bcd-chars)) 5 200)
   (q/text (count model/bcd-chars) 5 300)
+  (q/text (str (int 65) ) 5 400)
   ; Calculate x and y coordinates of the circle.
   ;(let [angle (:angle state)
   ;      x (* 150 (q/cos angle))
