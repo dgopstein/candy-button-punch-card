@@ -1,6 +1,9 @@
 (ns dotfor.core
   (:require [quil.core :as q :include-macros true]
-            [quil.middleware :as m]))
+            [quil.middleware :as m]
+            [dotfor.model :as model]
+            [clojure.string :as string]
+            ))
 
 (defn setup []
   ; Set frame rate to 30 frames per second.
@@ -21,16 +24,21 @@
   ; Clear the sketch by filling it with light-grey color.
   (q/background 240)
   ; Set circle color.
-  (q/fill (:color state) 255 255)
+  (q/fill 255 255 0)
+  (q/text-size 18)
+  (q/text (clojure.string/join (take 32 model/bcd-chars)) 5 100)
+  (q/text (clojure.string/join (drop 32 model/bcd-chars)) 5 200)
+  (q/text (count model/bcd-chars) 5 300)
   ; Calculate x and y coordinates of the circle.
-  (let [angle (:angle state)
-        x (* 150 (q/cos angle))
-        y (* 150 (q/sin angle))]
-    ; Move origin point to the center of the sketch.
-    (q/with-translation [(/ (q/width) 2)
-                         (/ (q/height) 2)]
-      ; Draw the circle.
-      (q/ellipse x y 100 100))))
+  ;(let [angle (:angle state)
+  ;      x (* 150 (q/cos angle))
+  ;      y (* 150 (q/sin angle))]
+  ;  ; Move origin point to the center of the sketch.
+  ;  (q/with-translation [(/ (q/width) 2)
+  ;                       (/ (q/height) 2)]
+  ;    ; Draw the circle.
+  ;    (q/ellipse x y 100 100))))
+  )
 
 (q/defsketch dotfor
   :host "dotfor"
