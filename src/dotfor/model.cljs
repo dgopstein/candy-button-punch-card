@@ -37,7 +37,7 @@
   (map #(= 1 %) (bits i 6)))
 
 (defn char-to-6-dots [encode c]
-  (prn "encode " (encode c))
+  ;(prn "encode " (encode c))
   (int-to-6-dots (encode c)))
 
 (defn str-to-6-dots [encode s]
