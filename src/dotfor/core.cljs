@@ -53,8 +53,6 @@
       (if b
         (let [x (+ 50 (* 40 (mod ix 6)))
               y (+ 30 (* 40 iy))]
-              (prn "ix iy (" ix iy)
-              (prn "x y (" x y)
         (q/ellipse x y 20 20))))
   )
   
